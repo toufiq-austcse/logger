@@ -1,7 +1,14 @@
 package logger
 
-import "fmt"
+import (
+	"github.com/sirupsen/logrus"
+)
 
-func Log(s string) {
-	fmt.Println(s)
+var Log = logrus.New()
+
+func SetupLogger(printPretty bool, disableHtmlEscape bool) {
+	Log.SetFormatter(&logrus.JSONFormatter{
+		PrettyPrint:       printPretty,
+		DisableHTMLEscape: disableHtmlEscape,
+	})
 }
